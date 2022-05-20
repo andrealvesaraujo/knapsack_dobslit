@@ -1,0 +1,16 @@
+body {
+    --white: #dfe0e2ff;
+    --lightWhite: #fcd7adff;
+    --blue: #003559ff;
+    --lightBlue: #05a8aaff;
+    --black: #896978ff;
+}
+
+main {
+    background-color: var(--white);
+    height:100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
