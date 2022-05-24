@@ -1,14 +1,12 @@
 import React from 'react';
-import './reset.css';
-import './normalize.css'
-import './App.css';
+import './App.scss';
 
 export default class App extends React.Component {
   render() {
     return (
       <main>
-        <div class="knapsackForm">
-          <h2>Problema da Mochila</h2>
+        <h1>Problema da Mochila</h1>
+        <div className="container-form">
           <div>
             <form>
               <div>
@@ -27,16 +25,25 @@ export default class App extends React.Component {
                 <label for="item-total">Quantidade do Item</label>
                 <input type="text" name="item-total" placeholder='Quantidade do item'/>
               </div>
+              <div className="container-btn-item">
+                <button className="btn-sucess" type="submit">Adicionar item</button>
+              </div>
             </form>
-            <h3>Lista de Itens Existentes:</h3>
-            <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ul>
           </div>
         </div>
-        <div class="knapsackTable">
+       
+        <div className="container-items">
+            <h3>Lista de Itens Existentes:</h3>
+            <ol>
+              <li>Item 1 - 5kg - R$15 - 1</li>
+              <li>Item 2 - 25kg - R$10 - 2</li>
+              <li>Item 3 - 15kg - R$30 - 5</li>
+            </ol>
+        </div>
+        <div className="container-btn-solution">
+          <button className="btn-sucess">Solução do Problema</button>
+        </div>
+        <div className="container-table">
           <h2>Tabela</h2>
           <table>
             <thead>

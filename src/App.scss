@@ -1,0 +1,85 @@
+body {
+    --white: #dfe0e2ff;
+    --lightWhite: #fcd7adff;
+    --blue: #003559ff;
+    --lightBlue: #05a8aaff;
+    --black: #896978ff;
+}
+
+main {
+    background-color: var(--white);
+    height:100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        color: var(--blue);
+    }
+
+
+    .container-form {
+        margin: 1rem;
+        padding: 2rem;
+        border: 0.1rem solid var(--black);
+        border-radius: 1rem;
+        min-width: 35rem;
+
+        form {
+
+            div {
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    margin: .5rem 0 .5rem 0;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: var(--blue)
+                }
+
+                input {
+                    margin: .5rem 0 .5rem 0;
+                    color: var(--lightBlue)
+                }
+            }
+
+            .container-btn-item {
+                margin-top: 2rem;
+                display: block;
+            }
+
+        }
+    }
+    
+
+    .container-items {
+        margin: 1rem;
+
+    }
+
+    .container-btn-solution {
+        margin: 1rem;
+    }
+
+    .container-table {
+        margin: 1rem;
+
+    }
+
+    .btn-sucess {
+        border-radius: 1rem;
+        background-color: var(--lightBlue);
+        border: 1px solid var(--lightBlue);
+        color: var(--blue);
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 1rem;  
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+}

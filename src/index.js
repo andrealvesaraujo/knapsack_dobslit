@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './reset.css';
+import './reset.scss';
+import './normalize.scss'
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
