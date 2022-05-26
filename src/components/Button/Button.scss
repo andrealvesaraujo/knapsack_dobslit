@@ -1,0 +1,41 @@
+.btn-sucess {
+    border-radius: 1rem;
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color: var(--black);
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 1rem;  
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.btn-edit {
+    border-radius: 1rem;
+    background-color: var(--blue);
+    border: 1px solid var(--blue);
+    color: var(--black);
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 1rem;  
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.btn-alert {
+    border-radius: 1rem;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+    color: var(--black);
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 1rem;  
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

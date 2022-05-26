@@ -1,0 +1,37 @@
+.container-form {
+    margin: 1rem;
+    padding: 1rem;
+    border: 0.1rem solid var(--black);
+    border-radius: 1rem;
+    min-width: 35rem;
+
+    form {
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                margin: 1.5rem 0 .5rem 0;
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: var(--black);
+            }
+
+            input {
+                margin: 0.5rem 0 0.5rem 0;
+                color: var(--black);
+                font-size: 1.6rem;
+                padding: 1rem;
+                border: none;
+                border-radius: 1.8rem;
+            }
+        }
+
+        .container-btn-item {
+            margin-top: 1rem;
+            display: block;
+        }
+
+    }
+}
