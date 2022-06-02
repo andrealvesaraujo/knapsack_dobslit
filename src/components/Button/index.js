@@ -17,7 +17,7 @@ export default class Button extends React.Component {
     return (
       <>
       {this.state.isAddingItem && (
-          <button className="btn-sucess">Adicionar Item</button>
+          <button type="submit" className="btn-sucess">Adicionar Item</button>
       )}
       {this.state.isSucess && (
           <button className="btn-sucess">Solução do Problema</button>
