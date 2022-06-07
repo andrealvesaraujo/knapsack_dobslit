@@ -95,7 +95,7 @@ export default class MainForm extends React.Component {
                     >
                         <Form>
                             <div>
-                                <label htmlFor="knapsackWeight">Peso Maximo Mochila</label>
+                                <label htmlFor="knapsackWeight">Peso Maximo da Mochila</label>
                                 <Field 
                                     id="knapsackWeight" 
                                     name="knapsackWeight" 

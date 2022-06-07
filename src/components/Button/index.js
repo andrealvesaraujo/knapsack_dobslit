@@ -20,7 +20,7 @@ export default class Button extends React.Component {
           <button type="submit" className="btn-sucess">Adicionar Item</button>
       )}
       {this.state.isSucess && (
-          <button className="btn-sucess">Solução do Problema</button>
+          <button className="btn-sucess" onClick={this.props.onClick}>Solução do Problema</button>
       )}
       {this.state.isEdit && (
           <button className="btn-edit" onClick={this.props.onClick}>Editar</button>

@@ -23,6 +23,13 @@ main {
 
     .container-btn-solution {
         margin: 1rem;
+
+        div {
+            margin-top: 1rem;
+            color:var(--red);
+            font-weight: bold;
+            font-size: 1.6rem;
+        }
     }
 
 }
