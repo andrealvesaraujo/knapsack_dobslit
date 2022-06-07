@@ -36,6 +36,16 @@ export default class App extends React.Component {
     })
   }
 
+  handleDeleteItem = (idx) => {
+    const {listItems} = this.state
+    const filteredListItems = listItems.filter((item, itemIdx) => itemIdx !== idx)
+
+    this.setState({
+      ...this.state,
+      listItems: filteredListItems
+    })
+  }
+
   render() {
     return (
       <main>
@@ -45,7 +55,8 @@ export default class App extends React.Component {
           saveKnapsackWeight={this.handleFormSaveWeight}
         />
         <ListItems 
-            listItems={this.state.listItems}
+            listItems={this.state.listItems} 
+            onDelete={this.handleDeleteItem}
         />
         <div className="container-btn-solution">
           <Button isSucess />
