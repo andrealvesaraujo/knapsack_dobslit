@@ -23,11 +23,11 @@ export default class Button extends React.Component {
           <button className="btn-sucess">Solução do Problema</button>
       )}
       {this.state.isEdit && (
-          <button className="btn-edit">Editar</button>
+          <button className="btn-edit" onClick={this.props.onClick}>Editar</button>
         )
       }
       {this.state.isDelete && (
-          <button className="btn-alert">Deletar</button>
+          <button className="btn-alert" onClick={this.props.onClick}>Deletar</button>
         )
       }
       </>

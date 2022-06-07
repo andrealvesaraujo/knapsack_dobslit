@@ -21,10 +21,6 @@ export default class MainForm extends React.Component {
         }
     }
 
-    componentDidUpdate(){
-        console.log(this.state);
-    }
-
     handleSubmit = (values, formikBag)=>{
         this.setState({
             knapsackWeight: values.knapsackWeight,
@@ -32,6 +28,13 @@ export default class MainForm extends React.Component {
             itemValue: values.itemValue,
             itemTotal: values.itemTotal,
         },()=>{
+            const item = { 
+                itemWeight:  this.state.itemWeight,
+                itemValue:  this.state.itemValue,
+                itemTotal:  this.state.itemTotal,
+            }
+            this.props.addItem(item)
+            this.props.saveKnapsackWeight(this.state.knapsackWeight)
             formikBag.resetForm()
         })
     }
