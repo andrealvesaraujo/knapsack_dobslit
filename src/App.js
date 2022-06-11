@@ -48,7 +48,9 @@ export default class App extends React.Component {
         knapsackWeightError = 'Campo Obrigatório';
     } else if(!regexOnlyNumber.test(this.state.knapsackWeightInput)){
         knapsackWeightError = 'Campo só aceita número';
-    }
+    } else if (this.state.knapsackWeightInput == 0){
+      knapsackWeightError = 'Campo só aceita número maior que zero';            
+  }
 
     if(knapsackWeightError){
       this.setState({
@@ -66,7 +68,40 @@ export default class App extends React.Component {
     })
   }
 
+  handleFormEditItem = (editItem) => {
+    const {listItems, indexEditItem} = this.state
+    listItems.map((item, idx)=>{
+        if(idx === indexEditItem){
+          item.itemWeight = editItem.itemWeight
+          item.itemValue = editItem.itemValue
+          item.itemTotal = editItem.itemTotal
+        }
+        return item
+    })
+
+    this.setState({
+      ...this.state,
+      formEditItem: {
+        itemWeight: '',
+        itemValue: '',
+        itemTotal: '',
+      },
+      listItems
+    })
+  }
+
+  handleEditItem = (indexEditItem) => {
+    const {listItems} = this.state
+    const formEditItem = listItems.find((item, itemIdx) => itemIdx === indexEditItem)
+    this.setState({
+      ...this.state,
+      formEditItem,
+      indexEditItem
+    })
+  }
+
   handleDeleteItem = (idx) => {
+
     const {listItems} = this.state
     const filteredListItems = listItems.filter((item, itemIdx) => itemIdx !== idx)
 
@@ -101,8 +136,6 @@ export default class App extends React.Component {
       solutionList,
       tableListItems: this.state.listItems,
       tableknapsackWeight: this.state.knapsackWeight,
-    }, ()=>{
-      console.log(this.state)
     })
   }
 
@@ -132,7 +165,9 @@ export default class App extends React.Component {
             }
         </div>
         <MainForm 
-          addItem={this.handleFormAddItem} 
+          addItem={this.handleFormAddItem}
+          formEditItem={this.state.formEditItem}
+          editItem={this.handleFormEditItem}
         />
         <ListItems 
             listItems={this.state.listItems} 
@@ -146,7 +181,11 @@ export default class App extends React.Component {
           }
         </div>
         {this.state.solutionList && this.state.solutionList.length > 0 && (
-          <MainTable tableListItems={this.state.tableListItems} solutionList={this.state.solutionList} tableknapsackWeight={this.state.tableknapsackWeight}/>
+          <MainTable 
+            tableListItems={this.state.tableListItems} 
+            solutionList={this.state.solutionList} 
+            tableknapsackWeight={this.state.tableknapsackWeight}
+          />
         )}
        
       </main>

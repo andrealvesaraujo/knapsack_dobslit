@@ -15,7 +15,7 @@ export default class ListItems extends React.Component {
                     <li key={`item_${idx}`}>
                       Item {idx + 1} - {item.itemWeight}kg - R${item.itemValue} - {item.itemTotal}
                       <div>
-                        <Button isEdit/>
+                        <Button isEdit onClick={() => this.props.onEdit(idx)}/>
                         <Button isDelete onClick={() => this.props.onDelete(idx)}/>
                       </div>
                     </li>

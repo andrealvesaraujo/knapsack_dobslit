@@ -30,7 +30,11 @@ export default class MainForm extends React.Component {
                 itemValue:  this.state.itemValue,
                 itemTotal:  this.state.itemTotal,
             }
-            this.props.addItem(item)
+            if(this.props.formEditItem.itemWeight){
+                this.props.editItem(item)
+            } else {
+                this.props.addItem(item)
+            }
            formikBag.resetForm()
         })
     }
@@ -39,23 +43,30 @@ export default class MainForm extends React.Component {
         const errors = {};
 
         const regexOnlyNumber = /^[0-9\b]+$/;
+
         
         if (!values.itemWeight) {
             errors.itemWeight = 'Campo Obrigatório';
         }else if(!regexOnlyNumber.test(values.itemWeight)){
             errors.itemWeight = 'Campo só aceita número';
+        } else if (values.itemWeight == 0){
+            errors.itemWeight = 'Campo só aceita número maior que zero';            
         }
         
         if (!values.itemValue) {
             errors.itemValue = 'Campo Obrigatório';
         }else if(!regexOnlyNumber.test(values.itemValue)){
             errors.itemValue = 'Campo só aceita número';
+        } else if (values.itemValue == 0){
+            errors.itemValue = 'Campo só aceita número maior que zero';            
         }
 
         if (!values.itemTotal) {
             errors.itemTotal = 'Campo Obrigatório';
         }else if(!regexOnlyNumber.test(values.itemTotal)){
             errors.itemTotal = 'Campo só aceita número';
+        } else if (values.itemTotal == 0){
+            errors.itemTotal = 'Campo só aceita número maior que zero';            
         }
         
 
@@ -68,16 +79,18 @@ export default class MainForm extends React.Component {
     }
 
     render() {
+        // {console.log(this.props.formEditItem)}
         return (
             <div className="container-form">
                 <h2 className='form-title'>Item da Mochila</h2>
                 <div>
                     <Formik
                         initialValues={{
-                            itemWeight: '',
-                            itemValue: '',
-                            itemTotal: '',
+                            itemWeight: this.props.formEditItem.itemWeight,
+                            itemValue: this.props.formEditItem.itemValue,
+                            itemTotal: this.props.formEditItem.itemTotal,
                         }}
+                        enableReinitialize
                         onSubmit={this.handleSubmit}
                         validate={this.handleValidate}
                         validateOnChange={false}
