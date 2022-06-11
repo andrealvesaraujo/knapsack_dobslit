@@ -8,12 +8,10 @@ export default class MainForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            knapsackWeight: '',
             itemWeight: '',
             itemValue: '',
             itemTotal: '',
             errors: {
-                knapsackWeight: '',
                 itemWeight: '',
                 itemValue: '',
                 itemTotal: '',
@@ -23,7 +21,6 @@ export default class MainForm extends React.Component {
 
     handleSubmit = (values, formikBag)=>{
         this.setState({
-            knapsackWeight: values.knapsackWeight,
             itemWeight: values.itemWeight,
             itemValue: values.itemValue,
             itemTotal: values.itemTotal,
@@ -34,37 +31,30 @@ export default class MainForm extends React.Component {
                 itemTotal:  this.state.itemTotal,
             }
             this.props.addItem(item)
-            this.props.saveKnapsackWeight(this.state.knapsackWeight)
-            formikBag.resetForm()
+           formikBag.resetForm()
         })
     }
     
     handleValidate = (values) => {
         const errors = {};
 
-        const re = /^[0-9\b]+$/;
-
-        if (!values.knapsackWeight) {
-            errors.knapsackWeight = 'Campo Obrigatório';
-        } else if(!re.test(values.knapsackWeight)){
-            errors.knapsackWeight = 'Campo só aceita número';
-        }
+        const regexOnlyNumber = /^[0-9\b]+$/;
         
         if (!values.itemWeight) {
             errors.itemWeight = 'Campo Obrigatório';
-        }else if(!re.test(values.itemWeight)){
+        }else if(!regexOnlyNumber.test(values.itemWeight)){
             errors.itemWeight = 'Campo só aceita número';
         }
         
         if (!values.itemValue) {
             errors.itemValue = 'Campo Obrigatório';
-        }else if(!re.test(values.itemValue)){
+        }else if(!regexOnlyNumber.test(values.itemValue)){
             errors.itemValue = 'Campo só aceita número';
         }
 
         if (!values.itemTotal) {
             errors.itemTotal = 'Campo Obrigatório';
-        }else if(!re.test(values.itemTotal)){
+        }else if(!regexOnlyNumber.test(values.itemTotal)){
             errors.itemTotal = 'Campo só aceita número';
         }
         
@@ -80,10 +70,10 @@ export default class MainForm extends React.Component {
     render() {
         return (
             <div className="container-form">
+                <h2 className='form-title'>Item da Mochila</h2>
                 <div>
                     <Formik
                         initialValues={{
-                            knapsackWeight: '',
                             itemWeight: '',
                             itemValue: '',
                             itemTotal: '',
@@ -94,16 +84,6 @@ export default class MainForm extends React.Component {
                         validateOnBlur={false}
                     >
                         <Form>
-                            <div>
-                                <label htmlFor="knapsackWeight">Peso Maximo da Mochila</label>
-                                <Field 
-                                    id="knapsackWeight" 
-                                    name="knapsackWeight" 
-                                    placeholder='Peso da mochila' 
-                                    autoComplete="off" 
-                                />
-                                {this.state.errors.knapsackWeight ? <div className="error">{this.state.errors.knapsackWeight}</div> : null}
-                            </div>
                             <div>
                                 <label htmlFor="itemWeight">Peso do Item</label>
                                 <Field 

@@ -10,7 +10,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      knapsackWeightInput: '',
       knapsackWeight: '',
+      knapsackWeightError: '',
       indexEditItem:'',
       formEditItem: {
         itemWeight: '',
@@ -29,12 +31,38 @@ export default class App extends React.Component {
     })
   }
 
-  handleFormSaveWeight = (weight) => {
+  handleInputChange = (e) => {
     this.setState({
-      knapsackWeight: weight
-    },()=>{
-      // console.log('this.state.knapsackWeight')
-      // console.log(this.state.knapsackWeight)
+      ...this.state,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleUpdateKnapsackWeight = () => {
+
+    let knapsackWeightError;
+
+    const regexOnlyNumber = /^[0-9\b]+$/;
+
+    if (!this.state.knapsackWeightInput) {
+        knapsackWeightError = 'Campo Obrigatório';
+    } else if(!regexOnlyNumber.test(this.state.knapsackWeightInput)){
+        knapsackWeightError = 'Campo só aceita número';
+    }
+
+    if(knapsackWeightError){
+      this.setState({
+        ...this.state,
+        knapsackWeightError
+      })
+      return
+    }
+
+    this.setState({
+      ...this.state,
+      knapsackWeight: this.state.knapsackWeightInput,
+      knapsackWeightInput: '',
+      knapsackWeightError: ''
     })
   }
 
@@ -55,8 +83,7 @@ export default class App extends React.Component {
 
     if(!this.state.knapsackWeight){
       solutionError = "O peso da Mochila é obrigatório"
-    }
-    if(this.state.listItems.length === 0 ){
+    } else if(this.state.listItems.length === 0 ){
       solutionError = "A lista de itens são obrigatórios"
     }     
 
@@ -83,9 +110,29 @@ export default class App extends React.Component {
     return (
       <main>
         <h1>Problema da Mochila</h1>
+        <div className="container-knapsackWeight">
+            <label htmlFor="knapsackWeight">Peso da Mochila</label>
+            <input 
+                id="knapsackWeightInput" 
+                name="knapsackWeightInput" 
+                placeholder='Peso da mochila' 
+                autoComplete="off"
+                value={this.state.knapsackWeightInput} 
+                onChange={this.handleInputChange}
+            />
+            {this.state.knapsackWeightError? <div className="error">{this.state.knapsackWeightError}</div> : null}
+            <div className="container-btn-update-weight">
+              <Button isUpdatingWeight onClick={this.handleUpdateKnapsackWeight} />
+            </div>
+            { this.state.knapsackWeight
+              ? 
+                <div className='text-result'>Peso da mochila: {this.state.knapsackWeight}kg</div> 
+              : 
+                <div className='text-result'>Peso da mochila não foi definido</div> 
+            }
+        </div>
         <MainForm 
           addItem={this.handleFormAddItem} 
-          saveKnapsackWeight={this.handleFormSaveWeight}
         />
         <ListItems 
             listItems={this.state.listItems} 

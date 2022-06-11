@@ -21,6 +21,44 @@ main {
         font-weight: bold;
     }
 
+    .container-knapsackWeight {
+        display: flex;
+        flex-direction: column;
+        min-width: 35rem;
+
+        label {
+            margin: 1.5rem 0 .5rem 0;
+            font-size: 1.8rem;
+            color: var(--black);
+        }
+
+        input {
+            margin: 1rem 0 0.5rem 0;
+            color: var(--black);
+            font-size: 1.6rem;
+            padding: 1rem;
+            border: none;
+            border-radius: 1.8rem;
+        }
+
+        .error {
+            color:var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .container-btn-update-weight {
+            margin-top: 1rem;
+        }
+
+        .text-result {
+            margin-top: 2rem;
+            color: var(--black);
+            font-size: 2rem;
+            font-weight: bold;
+
+        }
+    }
+
     .container-btn-solution {
         margin: 1rem;
 
